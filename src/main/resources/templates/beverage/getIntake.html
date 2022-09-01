@@ -259,7 +259,8 @@
                 <!-- Page Heading -->
                 <h1>user:</h1>
                 <h1 class="h3 mb-2 text-gray-800" th:text="${userName}"></h1>
-                <p class="mb-4">check your healthInformation <a target="_blank" th:href="@{/}">go to think drink service</a>.</p>
+                <p class="mb-4">please Intake your beverage!!
+                    no? <a target="_blank" th:href="@{/}">go back to main page</a>.</p>
 
                 <!-- Content Row -->
                 <div class="row">
@@ -269,9 +270,9 @@
 
                         <!-- Account details card-->
                         <div class="card mb-4">
-                            <div class="card-header">User Profile</div>
+                            <div class="card-header">BeverageInformation Profile</div>
                             <div class="card-body">
-                                <form>
+                                <form method="post" th:object="${beverageInformation}" th:action="@{/members/IntakeBeverage/intakeWay/manual/getBeverageInformation}">
                                     <!-- Form Group (username)-->
                                     <div class="mb-3">
                                         <h6 th:text="${userName}">email</h6>
@@ -280,41 +281,58 @@
                                     <div class="row gx-3 mb-3">
                                         <!-- Form Group (first name)-->
                                         <div class="col-md-6">
-                                            <label class="small mb-1" for="inputFirstName">height: </label>
-                                            <input class="form-control" id="inputFirstName" type="text"
-                                                   placeholder="Enter your first name" th:value="${user_height}">
+                                            <label class="small mb-1" for="cafeName">CafeName </label>
+                                            <input class="form-control" id="cafeName" type="text"
+                                                   th:value="${beverageInformation.getCafeId().getCafeName()}">
                                         </div>
                                         <!-- Form Group (last name)-->
                                         <div class="col-md-6">
-                                            <label class="small mb-1" for="inputLastName">weight: </label>
-                                            <input class="form-control" id="inputLastName" type="text"
-                                                   placeholder="Enter your last name" th:value="${user_weight}">
+                                            <label class="small mb-1" for="BeverageName">BeverageName </label>
+                                            <input class="form-control" id="BeverageName" type="text"
+                                                   placeholder="Enter your last name" th:field="*{beverageName}" th:value="${beverageInformation.getBeverageName()}">
                                         </div>
                                     </div>
                                     <!-- Form Row        -->
                                     <div class="row gx-3 mb-3">
                                         <!-- Form Group (organization name)-->
                                         <div class="col-md-6">
-                                            <label class="small mb-1" for="inputOrgName">gender</label>
-                                            <input class="form-control" id="inputOrgName" type="text"
-                                                   placeholder="Enter your organization name"
-                                                   th:value="${user_gender}">
+                                            <label class="small mb-1" for="Caffeine">Caffeine</label>
+                                            <input class="form-control" id="Caffeine" type="text"
+                                                    th:value="${beverageInformation.getCaffeine()}">
                                         </div>
                                         <!-- Form Group (location)-->
                                         <div class="col-md-6">
-                                            <label class="small mb-1" for="inputLocation">activity
-                                                - type:</label>
-                                            <input class="form-control" id="inputLocation" type="text"
+                                            <label class="small mb-1" for="Sugar">
+                                            Sugar</label>
+                                            <input class="form-control" id="Sugar" type="text"
                                                    placeholder="Enter your location"
-                                                   th:value="${user_activity}">
+                                                   th:value="${beverageInformation.getSugar()}">
                                         </div>
                                         <div class="col-md-6">
-                                            <label class="small mb-1" for="inputLocation">age
-                                                - type:</label>
-                                            <input class="form-control" id="inputLocation2" type="text"
+                                            <label class="small mb-1" for="Protein">Protein</label>
+                                            <input class="form-control" id="Protein" type="text"
                                                    placeholder="Enter your location"
-                                                   th:value="${user_age}">
+                                                   th:value="${beverageInformation.getProtein()}">
                                         </div>
+                                        <div class="col-md-6">
+                                            <label class="small mb-1" for="Kcal">Kcal</label>
+                                            <input class="form-control" id="Kcal" type="text"
+                                                   placeholder="Enter your location"
+                                                   th:value="${beverageInformation.getKcal()}">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="small mb-1" for="SaturatedFat">SaturatedFat</label>
+                                            <input class="form-control" id="SaturatedFat" type="text"
+                                                   placeholder="Enter your location"
+                                                   th:value="${beverageInformation.getSaturatedFat()}">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="small mb-1" for="IceOrHot">IceOrHot</label>
+                                            <input class="form-control" id="IceOrHot" type="text"
+                                                   placeholder="Enter your location"
+                                                   th:value="${beverageInformation.getIceOrHot()}">
+                                        </div>
+
                                     </div>
 
                                     <!-- Form Row-->
@@ -322,7 +340,12 @@
 
                                     </div>
                                     <!-- Save changes button-->
-                                    <a class="btn btn-primary" type="button">go to service</a>
+
+                                    <a th:href="@{/members/IntakeBeverage/intakeWay/manual/getBeverageInformation/sub(beverageId=${beverageInformation.getBeverageId()})}" class="btn btn-primary btn-icon-split btn-lg">
+                                        <span class="icon text-white-50">
+                                        </span>
+                                        <span class="text">In take!</span>
+                                    </a>
                                 </form>
 
 

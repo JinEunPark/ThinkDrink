@@ -33,6 +33,12 @@
         .btn btn-success btn-circle btn-lg {
             text-indent: 20%;
         }
+
+        table tbody tr td a {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
     </style>
     <script defer>
         $(document).ready(function () {
@@ -322,16 +328,39 @@
                                     <tbody>
 
                                     <tr th:each="beverageInformation : ${beverageInformationList}">
-                                        <a th:href="@{/members/IntakeBeverage/intakeWay/manual/getIntake/(beverageId=${beverageInformation.getBeverageId()})}">
-                                            <td th:text="${beverageInformation.getCafeId().getCafeName()}">Donna Snider</td>
-                                            <td th:text="${beverageInformation.getBigCategory()}">Donna Snider</td>
-                                            <td th:text="${beverageInformation.getIceOrHot()}">Donna Snider</td>
-                                            <td th:text="${beverageInformation.getCaffeine()}">Donna Snider</td>
-                                            <td th:text="${beverageInformation.getSugar()}">Donna Snider</td>
-                                            <td th:text="${beverageInformation.getSodium()}">Donna Snider</td>
-                                            <td th:text="${beverageInformation.getSaturatedFat()}">Donna Snider</td>
-                                            <td th:text="${beverageInformation.getProtein()}">Donna Snider</td>
-                                        </a>
+
+                                            <td>
+                                                <a th:text="${beverageInformation.getCafeId().getCafeName()}"
+                                                   th:href="@{/members/IntakeBeverage/intakeWay/manual/getBeverageInformation(beverageId=${beverageInformation.getBeverageId()})}"></a>
+                                            </td>
+                                            <td>
+                                                <a th:text="${beverageInformation.getBigCategory()}"
+                                                   th:href="@{/members/IntakeBeverage/intakeWay/manual/getBeverageInformation(beverageId=${beverageInformation.getBeverageId()})}"></a>
+                                            </td>
+                                            <td>
+                                                <a th:text="${beverageInformation.getBeverageName()}"
+                                                   th:href="@{/members/IntakeBeverage/intakeWay/manual/getBeverageInformation(beverageId=${beverageInformation.getBeverageId()})}"></a>
+                                            </td>
+                                            <td>
+                                                <a th:text="${beverageInformation.getIceOrHot()}"
+                                                   th:href="@{/members/IntakeBeverage/intakeWay/manual/getBeverageInformation(beverageId=${beverageInformation.getBeverageId()})}"></a>
+                                            </td>
+                                            <td><a th:text="${beverageInformation.getCaffeine()}"
+                                                   th:href="@{/members/IntakeBeverage/intakeWay/manual/getBeverageInformation(beverageId=${beverageInformation.getBeverageId()})}"></a>
+                                            </td>
+                                            <td><a th:text="${beverageInformation.getSugar()}"
+                                                   th:href="@{/members/IntakeBeverage/intakeWay/manual/getBeverageInformation(beverageId=${beverageInformation.getBeverageId()})}"></a>
+                                            </td>
+                                            <td><a th:text="${beverageInformation.getSodium()}"
+                                                   th:href="@{/members/IntakeBeverage/intakeWay/manual/getBeverageInformation(beverageId=${beverageInformation.getBeverageId()})}"></a>
+                                            </td>
+                                            <td><a th:text="${beverageInformation.getSaturatedFat()}"
+                                                   th:href="@{/members/IntakeBeverage/intakeWay/manual/getBeverageInformation(beverageId=${beverageInformation.getBeverageId()})}"></a>
+                                            </td>
+                                            <td><a th:text="${beverageInformation.getProtein()}"
+                                                   th:href="@{/members/IntakeBeverage/intakeWay/manual/getBeverageInformation(beverageId=${beverageInformation.getBeverageId()})}"></a>
+                                            </td>
+
                                     </tr>
                                     </tbody>
                                 </table>
@@ -365,63 +394,63 @@
             </div>
 
 
-<!--            <div class="card shadow mb-4">-->
-<!--                <div class="card-header py-3">-->
-<!--                    <h6 class="m-0 font-weight-bold text-primary">음료 및 카페 선택</h6>-->
-<!--                </div>-->
-<!--                <div class="card-body">-->
-<!--                    <div class="table-responsive">-->
-<!--                        <table class="table table-bordered" id="dataTable" th:width="100%" th:cellspacing="0">-->
-<!--                            <thead>-->
-<!--                            <tr>-->
-<!--                                <th>카페이름</th>-->
-<!--                                <th>대분류</th>-->
-<!--                                <th>음료이름</th>-->
-<!--                                <th>아이스</th>-->
-<!--                                <th>카페인</th>-->
-<!--                                <th>당류</th>-->
-<!--                                <th>소금</th>-->
-<!--                                <th>포화지방</th>-->
-<!--                                <th>단백질</th>-->
+            <!--            <div class="card shadow mb-4">-->
+            <!--                <div class="card-header py-3">-->
+            <!--                    <h6 class="m-0 font-weight-bold text-primary">음료 및 카페 선택</h6>-->
+            <!--                </div>-->
+            <!--                <div class="card-body">-->
+            <!--                    <div class="table-responsive">-->
+            <!--                        <table class="table table-bordered" id="dataTable" th:width="100%" th:cellspacing="0">-->
+            <!--                            <thead>-->
+            <!--                            <tr>-->
+            <!--                                <th>카페이름</th>-->
+            <!--                                <th>대분류</th>-->
+            <!--                                <th>음료이름</th>-->
+            <!--                                <th>아이스</th>-->
+            <!--                                <th>카페인</th>-->
+            <!--                                <th>당류</th>-->
+            <!--                                <th>소금</th>-->
+            <!--                                <th>포화지방</th>-->
+            <!--                                <th>단백질</th>-->
 
 
-<!--                            </tr>-->
-<!--                            </thead>-->
+            <!--                            </tr>-->
+            <!--                            </thead>-->
 
-<!--                            <tfoot>-->
+            <!--                            <tfoot>-->
 
-<!--                            <tr>-->
-<!--                                <th>카페이름</th>-->
-<!--                                <th>대분류</th>-->
-<!--                                <th>음료이름</th>-->
-<!--                                <th>아이스</th>-->
-<!--                                <th>카페인</th>-->
-<!--                                <th>당류</th>-->
-<!--                                <th>소금</th>-->
-<!--                                <th>포화지방</th>-->
-<!--                                <th>단백질</th>-->
-<!--                            </tr>-->
+            <!--                            <tr>-->
+            <!--                                <th>카페이름</th>-->
+            <!--                                <th>대분류</th>-->
+            <!--                                <th>음료이름</th>-->
+            <!--                                <th>아이스</th>-->
+            <!--                                <th>카페인</th>-->
+            <!--                                <th>당류</th>-->
+            <!--                                <th>소금</th>-->
+            <!--                                <th>포화지방</th>-->
+            <!--                                <th>단백질</th>-->
+            <!--                            </tr>-->
 
-<!--                            </tfoot>-->
+            <!--                            </tfoot>-->
 
-<!--                            <tbody>-->
-<!--                            <tr th:each="beverageInformation : ${beverageInformationList}">-->
-<!--                                <a th:href="@{/members/IntakeBeverage/intakeWay/manual/getIntake/(beverageId=${beverageInformation.getBeverageId()})}">-->
-<!--                                    <td th:text="${beverageInformation.getCafeId().getCafeName()}">Donna Snider</td>-->
-<!--                                    <td th:text="${beverageInformation.getBigCategory()}">Donna Snider</td>-->
-<!--                                    <td th:text="${beverageInformation.getIceOrHot()}">Donna Snider</td>-->
-<!--                                    <td th:text="${beverageInformation.getCaffeine()}">Donna Snider</td>-->
-<!--                                    <td th:text="${beverageInformation.getSugar()}">Donna Snider</td>-->
-<!--                                    <td th:text="${beverageInformation.getSodium()}">Donna Snider</td>-->
-<!--                                    <td th:text="${beverageInformation.getSaturatedFat()}">Donna Snider</td>-->
-<!--                                    <td th:text="${beverageInformation.getProtein()}">Donna Snider</td>-->
-<!--                                </a>-->
-<!--                            </tr>-->
-<!--                            </tbody>-->
-<!--                        </table>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
+            <!--                            <tbody>-->
+            <!--                            <tr th:each="beverageInformation : ${beverageInformationList}">-->
+            <!--                                <a th:href="@{/members/IntakeBeverage/intakeWay/manual/getIntake/(beverageId=${beverageInformation.getBeverageId()})}">-->
+            <!--                                    <td th:text="${beverageInformation.getCafeId().getCafeName()}">Donna Snider</td>-->
+            <!--                                    <td th:text="${beverageInformation.getBigCategory()}">Donna Snider</td>-->
+            <!--                                    <td th:text="${beverageInformation.getIceOrHot()}">Donna Snider</td>-->
+            <!--                                    <td th:text="${beverageInformation.getCaffeine()}">Donna Snider</td>-->
+            <!--                                    <td th:text="${beverageInformation.getSugar()}">Donna Snider</td>-->
+            <!--                                    <td th:text="${beverageInformation.getSodium()}">Donna Snider</td>-->
+            <!--                                    <td th:text="${beverageInformation.getSaturatedFat()}">Donna Snider</td>-->
+            <!--                                    <td th:text="${beverageInformation.getProtein()}">Donna Snider</td>-->
+            <!--                                </a>-->
+            <!--                            </tr>-->
+            <!--                            </tbody>-->
+            <!--                        </table>-->
+            <!--                    </div>-->
+            <!--                </div>-->
+            <!--            </div>-->
 
 
         </div>
