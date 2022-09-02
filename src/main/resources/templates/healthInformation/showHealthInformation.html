@@ -58,7 +58,7 @@
             <div class="sidebar-brand-icon rotate-n-15">
                 <i class="fas fa-laugh-wink"></i>
             </div>
-            <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+            <div class="sidebar-brand-text mx-3">Think Drink <sup>2</sup></div>
         </a>
 
         <!-- Divider -->
@@ -344,6 +344,58 @@
                                     <!-- Save changes button-->
                                     <a class="btn btn-primary" type="button">go to service</a>
                                 </form>
+
+                                <div class="col-xl-8 col-lg-7">
+
+                                    <!-- Area Chart -->
+                                    <div class="card shadow mb-4">
+                                        <div class="card-header py-3">
+                                            <h6 class="m-0 font-weight-bold text-primary">timestamp 섭취현황(지금까지 먹은 음료의 누적
+                                                영양성분 입니다.)</h6>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="chart-area">
+                                                <canvas id="myAreaChart"></canvas>
+                                            </div>
+                                            <hr>
+
+                                        </div>
+                                    </div>
+
+                                    <!-- Bar Chart -->
+                                    <div class="card shadow mb-4">
+                                        <div class="card-header py-3">
+                                            <h6 class="m-0 font-weight-bold text-primary">영양성분 일일 권장량</h6>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="chart-bar">
+                                                <canvas id="myBarChart"></canvas>
+                                            </div>
+                                            <hr>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <!-- Donut Chart -->
+                                <div class="col-xl-4 col-lg-5">
+                                    <div class="card shadow mb-4">
+                                        <!-- Card Header - Dropdown -->
+                                        <div class="card-header py-3">
+                                            <h6 class="m-0 font-weight-bold text-primary">일일권장 섭취량 비율</h6>
+                                        </div>
+                                        <!-- Card Body -->
+                                        <div class="card-body">
+                                            <div class="chart-pie pt-4">
+                                                <canvas id="myPieChart"></canvas>
+                                            </div>
+                                            <hr>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
 
                             </div>
