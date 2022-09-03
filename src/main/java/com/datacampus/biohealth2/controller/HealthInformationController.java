@@ -28,6 +28,8 @@ import javax.validation.Valid;
 import java.security.Principal;
 import java.util.List;
 
+import static com.datacampus.biohealth2.constant.Activity.activity;
+
 @Controller
 @Service
 @RequestMapping(value="/members/healthInformation")
@@ -114,7 +116,12 @@ public class HealthInformationController {
         model.addAttribute("user_age",healthInformation.getAge());
 
         return "healthInformation/showHealthInformation";
+
+
+
     }
+
+
 
 
     public MemberRepository getMemberRepository() {

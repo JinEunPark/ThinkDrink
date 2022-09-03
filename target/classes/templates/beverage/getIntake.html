@@ -340,11 +340,12 @@
 
                                     </div>
                                     <!-- Save changes button-->
-                                    <div style="text-align: center">
-                                        <a class="ui-button" th:href="@{/members/IntakeBeverage/intakeWay/manual/getBeverageInformation/sub(beverageId=${beverageInformation.getBeverageId()})}">
-                                            <span class="text">In take!!</span>
-                                        </a>
-                                    </div>
+
+                                    <a th:href="@{/members/IntakeBeverage/intakeWay/manual/getBeverageInformation/sub(beverageId=${beverageInformation.getBeverageId()})}" class="btn btn-primary btn-icon-split btn-lg">
+                                        <span class="icon text-white-50">
+                                        </span>
+                                        <span class="text">In take!</span>
+                                    </a>
                                 </form>
 
 
