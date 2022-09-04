@@ -19,6 +19,7 @@ public class HealthInformation implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name="health_Information_id")
     private Long id;
 
     @OneToOne(fetch = FetchType.LAZY)//field를 항상 같게 설정한다.
@@ -35,6 +36,10 @@ public class HealthInformation implements Serializable {
 
     @Enumerated(EnumType.STRING)
     private Activity activityType;
+
+    @OneToOne(mappedBy = "healthInformation", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name="PerDay_Nutrition_id")
+    private PerDayNutrition perDayNutrition;
 
     public void updateHealthInformation(double height, double weight, Integer age,Gender
             gender, Activity activityType){

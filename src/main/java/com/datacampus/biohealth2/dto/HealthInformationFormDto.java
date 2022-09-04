@@ -43,6 +43,7 @@ public class HealthInformationFormDto {
     private static ModelMapper modelMapper = new ModelMapper();
 
     public HealthInformation createHealthInformation(){
+
         return modelMapper.map(this,HealthInformation.class);
     }
 

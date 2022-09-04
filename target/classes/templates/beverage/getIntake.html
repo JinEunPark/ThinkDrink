@@ -341,7 +341,13 @@
                                     </div>
                                     <!-- Save changes button-->
 
-                                    <a th:href="@{/members/IntakeBeverage/intakeWay/manual/getBeverageInformation/sub(beverageId=${beverageInformation.getBeverageId()})}" class="btn btn-primary btn-icon-split btn-lg">
+                                    <a th:href="@{/members/IntakeBeverage/intakeWay/manual/getBeverageInformation/sub(beverageId=${beverageInformation.getBeverageId()})}" class="btn btn-primary btn-icon-split btn-lg"
+                                    onclick="saveBeverageIntakeInformation()">
+                                        <script>
+                                            function saveBeverageIntakeInformation(){
+                                                alert("섭취한 음료가 저장되었습니다!");
+                                            }
+                                        </script>
                                         <span class="icon text-white-50">
                                         </span>
                                         <span class="text">In take!</span>
