@@ -5,12 +5,21 @@ import com.datacampus.biohealth2.constant.Gender;
 import com.datacampus.biohealth2.dto.HealthInformationDto;
 import com.datacampus.biohealth2.dto.HealthInformationFormDto;
 import com.datacampus.biohealth2.dto.MemberFormDto;
+import com.datacampus.biohealth2.dto.PerDayNutritionDto;
 import com.datacampus.biohealth2.entity.HealthInformation;
 import com.datacampus.biohealth2.entity.Member;
+import com.datacampus.biohealth2.entity.PerDayNutrition;
 import com.datacampus.biohealth2.repository.HealthInformationRepository;
 import com.datacampus.biohealth2.repository.MemberRepository;
+import com.datacampus.biohealth2.repository.PerDayNutritionRepository;
+import com.datacampus.biohealth2.serializer.CustomSerializer;
 import com.datacampus.biohealth2.service.HealthInformationService;
+import com.datacampus.biohealth2.service.PerDayNutritionService;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.util.JSONPObject;
 import groovy.util.logging.Slf4j;
+import groovyjarjarantlr4.v4.codegen.model.OutputModelObject;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -19,10 +28,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.security.Principal;
@@ -42,6 +48,10 @@ public class HealthInformationController {
     private final HealthInformationRepository healthInformationRepository;
     private final MemberRepository memberRepository;
 
+    private final PerDayNutritionService perDayNutritionService;
+
+    private final PerDayNutritionRepository perDayNutritionRepository;
+
 
     @ModelAttribute("genders")
     public Gender[] genders(){
@@ -54,7 +64,7 @@ public class HealthInformationController {
     }
 
     @GetMapping(value="/new")
-    public String getHealthInformation(@AuthenticationPrincipal UserDetails userDetails, Model model, Model model2){
+    public String getHealthInformation(@AuthenticationPrincipal UserDetails userDetails, Model model){
             model.addAttribute("healthInformationFormDto", new HealthInformationFormDto());//loadByUsername에서 반환하는 객체로 받아야합니다.
             model.addAttribute("userName", userDetails.getUsername());
             String userEmail = userDetails.getUsername();
@@ -75,9 +85,6 @@ public class HealthInformationController {
         System.out.println(userEmail);
          Member member = memberRepository.findByEmail(userEmail);
         healthInformationFormDto.setMember(member);//application context 단위에서 현재 login 한 객체를 받아서 전송함.
-//        member.setHealthInformation(HealthInformation.createHealthInformation(healthInformationFormDto));
-//        memberRepository.save(member);
-
 
 
         if(bindingResult.hasErrors()){
@@ -86,10 +93,13 @@ public class HealthInformationController {
         }
         try{
             HealthInformation healthInformation = HealthInformation.createHealthInformation(healthInformationFormDto);
-            healthInformationService.saveHealthInformation(healthInformation);
+            PerDayNutritionDto perDayNutritionDto = perDayNutritionService.getPerDayFromHealthInformation(healthInformation);
+            PerDayNutrition perDayNutrition = perDayNutritionDto.createPerDayNutrition();
+
+
+            healthInformationService.saveHealthInformation(healthInformation);//제일 먼저 설정하고 나서
+            perDayNutritionService.savePerDayNutrition(perDayNutrition);
             System.out.println("has2");
-
-
 
 
         } catch(IllegalStateException e){
@@ -103,7 +113,7 @@ public class HealthInformationController {
     }
 
     @GetMapping("/show")
-    public String showHealthInformation(@AuthenticationPrincipal UserDetails userDetails, Model model){
+    public String showHealthInformation(@AuthenticationPrincipal UserDetails userDetails, Model model) throws JsonProcessingException {
 
         String userEmail = userDetails.getUsername();
         Member member = memberRepository.findByEmail(userEmail);
@@ -115,15 +125,25 @@ public class HealthInformationController {
         model.addAttribute("user_activity",healthInformation.getActivityType());
         model.addAttribute("user_age",healthInformation.getAge());
 
+        PerDayNutrition perDayNutrition  = perDayNutritionRepository
+                .findPerDayNutritionByHealthInformation_Id(healthInformation.getId());
+        PerDayNutritionDto perDayNutritionDto = perDayNutritionService.getPerDayNutritionDto(perDayNutrition);
+
+
+        ObjectMapper objectMapper = CustomSerializer.getCustomObjectMapper();
+
+        String perDayNutritionJson = objectMapper.writerWithDefaultPrettyPrinter()
+                .writeValueAsString(perDayNutritionDto);
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("\'");
+        stringBuilder.append(perDayNutritionJson);
+        stringBuilder.append("\'");
+        perDayNutritionJson = stringBuilder.toString();
+        model.addAttribute("perDayNutritionJson",perDayNutritionJson);
+        System.out.println(perDayNutritionJson);
+
         return "healthInformation/showHealthInformation";
-
-
-
     }
-
-
-
-
     public MemberRepository getMemberRepository() {
         return memberRepository;
     }

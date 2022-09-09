@@ -1,3 +1,4 @@
+
 // Set new default font family and font color to mimic Bootstrap's default styling
 Chart.defaults.global.defaultFontFamily = 'Nunito', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
 Chart.defaults.global.defaultFontColor = '#858796';
@@ -28,6 +29,23 @@ function number_format(number, decimals, dec_point, thousands_sep) {
 }
 
 // Bar Chart Example
+console.log(perDayNutritionJson);
+perDayNutritionJson = perDayNutritionJson[0][0];
+// Preserve newlines, etc. - use valid JSON
+perDayNutritionJson = perDayNutritionJson.replace(/\\n/g, "\\n")
+    .replace(/\\'/g, "\\'")
+    .replace(/\\"/g, '\\"')
+    .replace(/\\&/g, "\\&")
+    .replace(/\\r/g, "\\r")
+    .replace(/\\t/g, "\\t")
+    .replace(/\\b/g, "\\b")
+    .replace(/\\f/g, "\\f");
+// Remove non-printable and other non-valid JSON characters
+perDayNutritionJson = perDayNutritionJson.replace(/[\u0000-\u0019]+/g,"");
+
+var perDay = JSON.parse(perDayNutritionJson);
+console.log(perDay)
+
 var ctx = document.getElementById("myBarChart");
 var myBarChart = new Chart(ctx, {
   type: 'bar',
@@ -38,7 +56,7 @@ var myBarChart = new Chart(ctx, {
       backgroundColor: "#4e73df",
       hoverBackgroundColor: "#2e59d9",
       borderColor: "#4e73df",
-      data: [ 88.71,11.1,0.44,300,0.37,8.13123],
+      data: [ perDay.kcal,perDay.protein,perDay.Sugar,perDay.Sodium,perDay.Saturated_fat,perDay.Caffeine],
     }],
   },
   options: {

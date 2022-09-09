@@ -38,5 +38,23 @@ public class PerDayNutrition {
     @Column(nullable = true)
     private double caffeine;
 
+    @Column(nullable = true)
+    private double drink_kcal;
+
+    @Column(nullable = true)
+    private double drink_sugar;
+
+    @Column(nullable = true)
+    private double drink_protein;
+
+    @Column(nullable = true)
+    private double drink_Sodium;
+
+    @Column(nullable = true)
+    private double drink_saturatedFat;
+
+    @Column(nullable = true)
+    private double drink_caffeine;
+
 
 }
