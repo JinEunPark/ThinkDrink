@@ -139,7 +139,7 @@ public class PerDayNutritionService {
                     coefficient = 1.45;
                 }
                 availableKcal = 354 - 6.91 * age + coefficient * (9.36 * weight + 726 * height);
-                return availableKcal;
+                return Math.round(availableKcal);
             }
 
         }
@@ -273,29 +273,29 @@ public class PerDayNutritionService {
     //음료로 인한 영양섭취 권장량 반환하는 메소드들
     public double getDrink_kcal(HealthInformation healthInformation) {
         double kcal = getAvailableKcalForDay(healthInformation);
-        return kcal*0.0399;
+        return kcal*0.04;
 
     }
 
     public double getDrink_Sugar(HealthInformation healthInformation) {
         double sugar = getAvailableSugarPerDay(healthInformation);
-        return sugar * 0.2000;
+        return sugar * 0.2;
 
     }
 
     public double getDrink_Protein(HealthInformation healthInformation) {
         double protein = getAvailableProteinPerDay(healthInformation);
-        return protein*0.0075;
+        return protein*0.008;
     }
 
     public double getDrink_Saturated_Fat(HealthInformation healthInformation) {
         double saturated_fat = getAvailableSaturated_FatPerDay(healthInformation);
-        return saturated_fat*0.0126;
+        return saturated_fat*0.013;
     }
 
     public double getDrink_Sodium(HealthInformation healthInformation) {
         double sodium = getAvailableSodiumPerDay(healthInformation);
-        return sodium*0.0054;
+        return sodium*0.005;
     }
 
     public double getDrink_Caffeine(HealthInformation healthInformation) {

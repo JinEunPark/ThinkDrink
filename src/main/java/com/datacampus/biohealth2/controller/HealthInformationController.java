@@ -2,10 +2,7 @@ package com.datacampus.biohealth2.controller;
 
 import com.datacampus.biohealth2.constant.Activity;
 import com.datacampus.biohealth2.constant.Gender;
-import com.datacampus.biohealth2.dto.HealthInformationDto;
-import com.datacampus.biohealth2.dto.HealthInformationFormDto;
-import com.datacampus.biohealth2.dto.MemberFormDto;
-import com.datacampus.biohealth2.dto.PerDayNutritionDto;
+import com.datacampus.biohealth2.dto.*;
 import com.datacampus.biohealth2.entity.HealthInformation;
 import com.datacampus.biohealth2.entity.Member;
 import com.datacampus.biohealth2.entity.PerDayNutrition;
@@ -128,19 +125,20 @@ public class HealthInformationController {
         PerDayNutrition perDayNutrition  = perDayNutritionRepository
                 .findPerDayNutritionByHealthInformation_Id(healthInformation.getId());
         PerDayNutritionDto perDayNutritionDto = perDayNutritionService.getPerDayNutritionDto(perDayNutrition);
-
-
-        ObjectMapper objectMapper = CustomSerializer.getCustomObjectMapper();
-
-        String perDayNutritionJson = objectMapper.writerWithDefaultPrettyPrinter()
-                .writeValueAsString(perDayNutritionDto);
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("\'");
-        stringBuilder.append(perDayNutritionJson);
-        stringBuilder.append("\'");
-        perDayNutritionJson = stringBuilder.toString();
-        model.addAttribute("perDayNutritionJson",perDayNutritionJson);
-        System.out.println(perDayNutritionJson);
+//
+//
+//        ObjectMapper objectMapper = CustomSerializer.getCustomObjectMapper();
+//
+//        String perDayNutritionJson = objectMapper.writerWithDefaultPrettyPrinter()
+//                .writeValueAsString(perDayNutritionDto);
+//        StringBuilder stringBuilder = new StringBuilder();
+//        stringBuilder.append("\'");
+//        stringBuilder.append(perDayNutritionJson);
+//        stringBuilder.append("\'");
+//        perDayNutritionJson = stringBuilder.toString();
+        SendToScriptDto perDay = new SendToScriptDto(perDayNutritionDto);
+        model.addAttribute("perDay",perDay);
+        System.out.println(perDay);
 
         return "healthInformation/showHealthInformation";
     }

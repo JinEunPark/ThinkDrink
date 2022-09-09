@@ -28,23 +28,10 @@ function number_format(number, decimals, dec_point, thousands_sep) {
   return s.join(dec);
 }
 
-// Bar Chart Example
-console.log(perDayNutritionJson);
-perDayNutritionJson = perDayNutritionJson[0][0];
-// Preserve newlines, etc. - use valid JSON
-perDayNutritionJson = perDayNutritionJson.replace(/\\n/g, "\\n")
-    .replace(/\\'/g, "\\'")
-    .replace(/\\"/g, '\\"')
-    .replace(/\\&/g, "\\&")
-    .replace(/\\r/g, "\\r")
-    .replace(/\\t/g, "\\t")
-    .replace(/\\b/g, "\\b")
-    .replace(/\\f/g, "\\f");
-// Remove non-printable and other non-valid JSON characters
-perDayNutritionJson = perDayNutritionJson.replace(/[\u0000-\u0019]+/g,"");
 
-var perDay = JSON.parse(perDayNutritionJson);
-console.log(perDay)
+// Bar Chart Example
+console.log(perDay);
+
 
 var ctx = document.getElementById("myBarChart");
 var myBarChart = new Chart(ctx, {
@@ -56,9 +43,11 @@ var myBarChart = new Chart(ctx, {
       backgroundColor: "#4e73df",
       hoverBackgroundColor: "#2e59d9",
       borderColor: "#4e73df",
-      data: [ perDay.kcal,perDay.protein,perDay.Sugar,perDay.Sodium,perDay.Saturated_fat,perDay.Caffeine],
+
+      data: [perDay.kcal, perDay.sugar, perDay.saturated_fat, perDay.caffeine, perDay.protein, perDay.sodium ],
     }],
   },
+
   options: {
     maintainAspectRatio: false,
     layout: {
@@ -86,7 +75,7 @@ var myBarChart = new Chart(ctx, {
       yAxes: [{
         ticks: {
           min: 0,
-          max: 400,
+          max: perDay.sugar,
           maxTicksLimit: 5,
           padding: 10,
           // Include a dollar sign in the ticks

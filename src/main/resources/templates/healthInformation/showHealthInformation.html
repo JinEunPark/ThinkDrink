@@ -25,12 +25,12 @@
     <script defer>
 
         /*<![CDATA[*/
-        $(document).ready(function () {
-            var errorMessage = [[${errorMessage}]];
-            if (errorMessage != null) {
-                alert(errorMessage);
-            }
-        });
+        // $(document).ready(function () {
+        //     var errorMessage = [[${errorMessage}]];
+        //     if (errorMessage != null) {
+        //         alert(errorMessage);
+        //     }
+        // });
         /*]]>*/
 
     </script>
@@ -266,6 +266,10 @@
                 <p class="mb-4">check your healthInformation <a
                         target="_blank" th:href="@{/}">go to think drink
                     service</a>.</p>
+                <h4>
+                    회원님이 입력한 정보에 따른 일일 권장 영양소와
+                    음료 영양섭취 권장량을 제공합니다.
+                </h4>
 
                 <!-- Content Row -->
                 <div class="row">
@@ -460,8 +464,8 @@
 
 <script th:inline="javascript" type="text/javascript">
     /*<![CDATA[*/
-    let perDayNutritionJson = [[${perDayNutritionJson}]];
-    alert(perDayNutritionJson);
+    let perDay = /*[[${perDay}]]*/{};
+    alert(perDay);
     /*]]>*/
 </script>
 
