@@ -1,15 +1,15 @@
 package com.datacampus.biohealth2.controller;
 
-import com.datacampus.biohealth2.dto.BeverageInformationDto;
 import com.datacampus.biohealth2.dto.BeverageIntakeDto;
+import com.datacampus.biohealth2.dto.CafeInformationDto;
 import com.datacampus.biohealth2.entity.BeverageInformation;
 import com.datacampus.biohealth2.entity.CafeInformation;
-import com.datacampus.biohealth2.entity.HealthInformation;
 import com.datacampus.biohealth2.entity.Member;
 import com.datacampus.biohealth2.repository.BeverageInformationRepository;
 import com.datacampus.biohealth2.repository.CafeRepository;
 import com.datacampus.biohealth2.repository.MemberRepository;
 import com.datacampus.biohealth2.service.BeverageIntakeService;
+import com.datacampus.biohealth2.service.CafeInformationService;
 import groovy.util.logging.Slf4j;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -34,6 +34,8 @@ public class BeverageIntakeController {
     private final CafeRepository cafeRepository;
     private final BeverageIntakeService beverageIntakeService;
     private final MemberRepository memberRepository;
+
+    private final CafeInformationService cafeInformationService;
 
     @GetMapping(value="/intakeWay")
     public String decisionWay(){
@@ -60,9 +62,32 @@ public class BeverageIntakeController {
         return "beverage/BeverageIntakeManual";
     }
 
+//    @GetMapping(value="intakeWay/manual/{id}")
+//    @ResponseBody
+//    public List<BeverageInformation> getCafeInformationDto(@PathVariable Long id, Model model){
+//
+//        Optional<CafeInformation> cafeInformationOpt = cafeRepository.findById(id);
+//
+//        CafeInformation cafeInformation = cafeInformationOpt.get();
+//
+//        List<BeverageInformation> beverageInformationList =
+//                beverageInformationRepository.findAllByCafeId(cafeInformation);
+//        model.addAttribute("beverageInformationList", beverageInformationList);
+//
+//
+//        return beverageInformationList;
+//    }
+    @GetMapping(value="intakeWay/manual/{id}")
+    @ResponseBody
+    public CafeInformation getCafeInformationDto(@PathVariable Long id){
+        Optional<CafeInformation> cafeInformationOptional = cafeRepository.findById(id);
+        CafeInformation cafeInformation = cafeInformationOptional.get();
+        return cafeInformation;
+    }
+
     @GetMapping(value="/intakeWay/manual/getBeverageInformation")
-    public String intakeManualBeverageGet(@AuthenticationPrincipal UserDetails userDetails, @RequestParam Long
-            beverageId, Model model){
+    public String intakeManualBeverageGet(@AuthenticationPrincipal UserDetails userDetails,
+                                          @RequestParam Long beverageId, Model model){
 
         String userName = userDetails.getUsername();
         model.addAttribute("userName",userName);
@@ -82,11 +107,15 @@ public class BeverageIntakeController {
 
         String userName = userDetails.getUsername();
         Member member = memberRepository.findByEmail(userName);
-        Optional<BeverageInformation> beverageInformationOptional = beverageInformationRepository.findById(beverageId);
+
+        Optional<BeverageInformation> beverageInformationOptional =
+                beverageInformationRepository.findById(beverageId);
+
         BeverageInformation beverageInformation = beverageInformationOptional.get();
         BeverageIntakeDto beverageIntakeDto = new BeverageIntakeDto();
         beverageIntakeDto.setBeverageId(beverageInformation);
         beverageIntakeDto.setMemberId(member);
+
         beverageIntakeService.saveBeverageIntake(beverageIntakeDto);
 
 

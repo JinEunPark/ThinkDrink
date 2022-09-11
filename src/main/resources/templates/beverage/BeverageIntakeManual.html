@@ -21,33 +21,20 @@
 
     <!-- Custom styles for this template-->
     <link href="/css/sb-admin-2.min.css" rel="stylesheet">
+
+
     <style>
-        .need-intent {
-            text-indent: 3%;
-        }
+        .gradient-custom {
+            /* fallback for old browsers */
+            background: #f6d365;
 
-        .fas fa-check {
-            text-indent: 20%;
-        }
+            /* Chrome 10-25, Safari 5.1-6 */
+            background: -webkit-linear-gradient(to right bottom, rgba(246, 211, 101, 1), rgba(253, 160, 133, 1));
 
-        .btn btn-success btn-circle btn-lg {
-            text-indent: 20%;
-        }
-
-        table tbody tr td a {
-            display: block;
-            width: 100%;
-            height: 100%;
+            /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+            background: linear-gradient(to right bottom, rgba(246, 211, 101, 1), rgba(253, 160, 133, 1))
         }
     </style>
-    <script defer>
-        $(document).ready(function () {
-            var errorMessage = [[${errorMessage}]];
-            if (errorMessage != null) {
-                alert(errorMessage);
-            }
-        });
-    </script>
 
 </head>
 
@@ -64,7 +51,7 @@
             <div class="sidebar-brand-icon rotate-n-15">
                 <i class="fas fa-laugh-wink"></i>
             </div>
-            <div class="sidebar-brand-text mx-3">Think Drink</div>
+            <div class="sidebar-brand-text mx-3">Think Drink <sup>2</sup></div>
         </a>
 
         <!-- Divider -->
@@ -82,18 +69,62 @@
 
         <!-- Heading -->
         <div class="sidebar-heading">
+            Interface
+        </div>
+
+        <!-- Nav Item - Pages Collapse Menu -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+               aria-expanded="true" aria-controls="collapseTwo">
+                <i class="fas fa-fw fa-cog"></i>
+                <span>Components</span>
+            </a>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+                 data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Custom Components:</h6>
+                    <a class="collapse-item" href="buttons.html">Buttons</a>
+                    <a class="collapse-item" href="cards.html">Cards</a>
+                </div>
+            </div>
+        </li>
+
+        <!-- Nav Item - Utilities Collapse Menu -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse"
+               data-target="#collapseUtilities"
+               aria-expanded="true" aria-controls="collapseUtilities">
+                <i class="fas fa-fw fa-wrench"></i>
+                <span>Utilities</span>
+            </a>
+            <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+                 data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Custom Utilities:</h6>
+                    <a class="collapse-item" href="utilities-color.html">Colors</a>
+                    <a class="collapse-item" href="utilities-border.html">Borders</a>
+                    <a class="collapse-item" href="utilities-animation.html">Animations</a>
+                    <a class="collapse-item" href="utilities-other.html">Other</a>
+                </div>
+            </div>
+        </li>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider">
+
+        <!-- Heading -->
+        <div class="sidebar-heading">
             Addons
         </div>
 
         <!-- Nav Item - Pages Collapse Menu -->
-        <li class="nav-item active">
-            <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapsePages"
-               aria-expanded="true"
-               aria-controls="collapsePages">
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
+               aria-expanded="true" aria-controls="collapsePages">
                 <i class="fas fa-fw fa-folder"></i>
                 <span>Pages</span>
             </a>
-            <div id="collapsePages" class="collapse show" aria-labelledby="headingPages"
+            <div id="collapsePages" class="collapse" aria-labelledby="headingPages"
                  data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Login Screens:</h6>
@@ -103,22 +134,16 @@
                     <div class="collapse-divider"></div>
                     <h6 class="collapse-header">Other Pages:</h6>
                     <a class="collapse-item" href="404.html">404 Page</a>
-                    <a class="collapse-item active" href="basic file.html">Blank Page</a>
+                    <a class="collapse-item" href="basic%20file.html">Blank Page</a>
                 </div>
             </div>
         </li>
-        <!--	        user should input their health information at here-->
-        <li class="nav-item">
-            <a class="nav-link" href="charts.html">
-                <span>Health information</span></a>
-        </li>
-
 
         <!-- Nav Item - Charts -->
-        <li class="nav-item">
+        <li class="nav-item active">
             <a class="nav-link" href="charts.html">
                 <i class="fas fa-fw fa-chart-area"></i>
-                <span>Intake beverage</span></a>
+                <span>Charts</span></a>
         </li>
 
         <!-- Nav Item - Tables -->
@@ -135,7 +160,6 @@
         <div class="text-center d-none d-md-inline">
             <button class="rounded-circle border-0" id="sidebarToggle"></button>
         </div>
-
 
     </ul>
     <!-- End of Sidebar -->
@@ -180,13 +204,13 @@
                             </form>
                         </div>
                     </li>
-                    `
+
 
                     <!-- Nav Item - User Information -->
                     <li class="nav-item dropdown no-arrow">
                         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="mr-2 d-none d-lg-inline text-gray-600 small" th:text="*{userName}">
+                            <span class="mr-2 d-none d-lg-inline text-gray-600 small" th:text="${userName}">
 
 
                             </span>
@@ -237,222 +261,53 @@
                     </div>
                     <div class="card-body">
                         음료 등록을 위해서 섬취한 음료의 카페와 메뉴를 입력해주세요
+
+                        <div class="form-group row">
+                            <label for="inputCafe" class="col-form-label">cafe: </label>
+                            <div class="col-sm-6">
+                                <select class="form-control" id="inputCafe" name="cafeid">
+                                    <option th:value="${null}">-SELECT-</option>
+                                    <option th:each="cafe:${cafeInformationList}"
+                                            th:value="${cafe.cafeId}"
+                                            th:text="${cafe.cafeName}">
+
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="inputBeverage" class="col-form-labe">beverage: </label>
+                            <div class="col-sm-6">
+                                <select class="form-control" id="inputBeverage" name="beverageid">
+
+                                    <option th:value="${null}">-SELECT-</option>
+                                    <option th:each="beverage:${beverageInformationList}"
+                                            th:value="${beverage.beverageId}"
+                                            th:text="${beverage.beverageName}">
+                                    </option>
+
+                                </select>
+                            </div>
+                        </div>
+                        <a class="btn btn-success btn-icon-split"
+                           onclick="saveBeverageIntakeInformation()" id="showBeverageButton">
+                            <script>
+                                function saveBeverageIntakeInformation(){
+                                    alert("섭취할실 음료를 선택하셨습니다.");
+                                }
+                            </script>
+                            <span class="icon text-white-50">
+                                            <i class="fas fa-check"></i>
+                                        </span>
+                            <span class="text">이음료의 정보를 열림하겠습니다! </span>
+                        </a>
                     </div>
+
+
+
                 </div>
             </div>
-
-
-            <div class="card-body">
-                <div class="table-responsive">
-                    <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
-                        <div class="row">
-                            <div class="col-sm-12 col-md-6">
-                                <div class="dataTables_length" id="dataTable_length"><label>Show <select
-                                        name="dataTable_length" aria-controls="dataTable"
-                                        class="custom-select custom-select-sm form-control form-control-sm">
-                                    <option value="10">10</option>
-                                    <option value="25">25</option>
-                                    <option value="50">50</option>
-                                    <option value="100">100</option>
-                                </select> entries</label></div>
-                            </div>
-                            <div class="col-sm-12 col-md-6">
-                                <div id="dataTable_filter" class="dataTables_filter"><label>Search:<input type="search"
-                                                                                                          class="form-control form-control-sm"
-                                                                                                          placeholder=""
-                                                                                                          aria-controls="dataTable"></label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <table class="table table-bordered dataTable" id="dataTable" width="100%"
-                                       cellspacing="0" role="grid" aria-describedby="dataTable_info"
-                                       style="width: 100%;">
-                                    <thead>
-                                    <tr role="row">
-                                        <th class="sorting sorting_asc" tabindex="0" aria-controls="dataTable"
-                                            rowspan="1" colspan="1" aria-sort="ascending"
-                                            aria-label="Name: activate to sort column descending" style="width: 44px;">
-                                            카페이름
-                                        </th>
-                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                            colspan="1" aria-label="bigCategory: activate to sort column ascending"
-                                            style="width: 61px;">대분류
-                                        </th>
-                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                            colspan="1" aria-label="BeverageName: activate to sort column ascending"
-                                            style="width: 44px;">음료이름
-                                        </th>
-                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                            colspan="1" aria-label="ICE_OR_HOT: activate to sort column ascending"
-                                            style="width: 31px;">아이스
-                                        </th>
-                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                            colspan="1" aria-label="Caffeine: activate to sort column ascending"
-                                            style="width: 68px;">카페인
-                                        </th>
-                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                            colspan="1" aria-label="Sugar: activate to sort column ascending"
-                                            style="width: 53px;">당류
-                                        </th>
-                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                            colspan="1" aria-label="Sodium: activate to sort column ascending"
-                                            style="width: 53px;">소금
-                                        </th>
-                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                            colspan="1" aria-label="Saturate_fat: activate to sort column ascending"
-                                            style="width: 53px;">포화지방
-                                        </th>
-                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                            colspan="1" aria-label="protein: activate to sort column ascending"
-                                            style="width: 53px;">단백질
-                                        </th>
-                                    </tr>
-                                    </thead>
-                                    <tfoot>
-                                    <tr>
-                                        <th rowspan="1" colspan="1">카페이름</th>
-                                        <th rowspan="1" colspan="1">대분류</th>
-                                        <th rowspan="1" colspan="1">음료이름</th>
-                                        <th rowspan="1" colspan="1">아이스</th>
-                                        <th rowspan="1" colspan="1">카페인</th>
-                                        <th rowspan="1" colspan="1">당류</th>
-                                        <th rowspan="1" colspan="1">소금</th>
-                                        <th rowspan="1" colspan="1">포화지방</th>
-                                        <th rowspan="1" colspan="1">단백질</th>
-
-
-                                    </tr>
-                                    </tfoot>
-                                    <tbody>
-
-                                    <tr th:each="beverageInformation : ${beverageInformationList}">
-
-                                            <td>
-                                                <a th:text="${beverageInformation.getCafeId().getCafeName()}"
-                                                   th:href="@{/members/IntakeBeverage/intakeWay/manual/getBeverageInformation(beverageId=${beverageInformation.getBeverageId()})}"></a>
-                                            </td>
-                                            <td>
-                                                <a th:text="${beverageInformation.getBigCategory()}"
-                                                   th:href="@{/members/IntakeBeverage/intakeWay/manual/getBeverageInformation(beverageId=${beverageInformation.getBeverageId()})}"></a>
-                                            </td>
-                                            <td>
-                                                <a th:text="${beverageInformation.getBeverageName()}"
-                                                   th:href="@{/members/IntakeBeverage/intakeWay/manual/getBeverageInformation(beverageId=${beverageInformation.getBeverageId()})}"></a>
-                                            </td>
-                                            <td>
-                                                <a th:text="${beverageInformation.getIceOrHot()}"
-                                                   th:href="@{/members/IntakeBeverage/intakeWay/manual/getBeverageInformation(beverageId=${beverageInformation.getBeverageId()})}"></a>
-                                            </td>
-                                            <td><a th:text="${beverageInformation.getCaffeine()}"
-                                                   th:href="@{/members/IntakeBeverage/intakeWay/manual/getBeverageInformation(beverageId=${beverageInformation.getBeverageId()})}"></a>
-                                            </td>
-                                            <td><a th:text="${beverageInformation.getSugar()}"
-                                                   th:href="@{/members/IntakeBeverage/intakeWay/manual/getBeverageInformation(beverageId=${beverageInformation.getBeverageId()})}"></a>
-                                            </td>
-                                            <td><a th:text="${beverageInformation.getSodium()}"
-                                                   th:href="@{/members/IntakeBeverage/intakeWay/manual/getBeverageInformation(beverageId=${beverageInformation.getBeverageId()})}"></a>
-                                            </td>
-                                            <td><a th:text="${beverageInformation.getSaturatedFat()}"
-                                                   th:href="@{/members/IntakeBeverage/intakeWay/manual/getBeverageInformation(beverageId=${beverageInformation.getBeverageId()})}"></a>
-                                            </td>
-                                            <td><a th:text="${beverageInformation.getProtein()}"
-                                                   th:href="@{/members/IntakeBeverage/intakeWay/manual/getBeverageInformation(beverageId=${beverageInformation.getBeverageId()})}"></a>
-                                            </td>
-
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-12 col-md-5">
-                                <div class="dataTables_info" id="dataTable_info" role="status" aria-live="polite">
-                                    Showing 1 to 1 of 1 entries
-                                </div>
-                            </div>
-                            <div class="col-sm-12 col-md-7">
-                                <div class="dataTables_paginate paging_simple_numbers" id="dataTable_paginate">
-                                    <ul class="pagination">
-                                        <li class="paginate_button page-item previous disabled" id="dataTable_previous">
-                                            <a href="#" aria-controls="dataTable" data-dt-idx="0" tabindex="0"
-                                               class="page-link">Previous</a></li>
-                                        <li class="paginate_button page-item active"><a href="#"
-                                                                                        aria-controls="dataTable"
-                                                                                        data-dt-idx="1" tabindex="0"
-                                                                                        class="page-link">1</a></li>
-                                        <li class="paginate_button page-item next disabled" id="dataTable_next"><a
-                                                href="#" aria-controls="dataTable" data-dt-idx="2" tabindex="0"
-                                                class="page-link">Next</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-            <!--            <div class="card shadow mb-4">-->
-            <!--                <div class="card-header py-3">-->
-            <!--                    <h6 class="m-0 font-weight-bold text-primary">음료 및 카페 선택</h6>-->
-            <!--                </div>-->
-            <!--                <div class="card-body">-->
-            <!--                    <div class="table-responsive">-->
-            <!--                        <table class="table table-bordered" id="dataTable" th:width="100%" th:cellspacing="0">-->
-            <!--                            <thead>-->
-            <!--                            <tr>-->
-            <!--                                <th>카페이름</th>-->
-            <!--                                <th>대분류</th>-->
-            <!--                                <th>음료이름</th>-->
-            <!--                                <th>아이스</th>-->
-            <!--                                <th>카페인</th>-->
-            <!--                                <th>당류</th>-->
-            <!--                                <th>소금</th>-->
-            <!--                                <th>포화지방</th>-->
-            <!--                                <th>단백질</th>-->
-
-
-            <!--                            </tr>-->
-            <!--                            </thead>-->
-
-            <!--                            <tfoot>-->
-
-            <!--                            <tr>-->
-            <!--                                <th>카페이름</th>-->
-            <!--                                <th>대분류</th>-->
-            <!--                                <th>음료이름</th>-->
-            <!--                                <th>아이스</th>-->
-            <!--                                <th>카페인</th>-->
-            <!--                                <th>당류</th>-->
-            <!--                                <th>소금</th>-->
-            <!--                                <th>포화지방</th>-->
-            <!--                                <th>단백질</th>-->
-            <!--                            </tr>-->
-
-            <!--                            </tfoot>-->
-
-            <!--                            <tbody>-->
-            <!--                            <tr th:each="beverageInformation : ${beverageInformationList}">-->
-            <!--                                <a th:href="@{/members/IntakeBeverage/intakeWay/manual/getIntake/(beverageId=${beverageInformation.getBeverageId()})}">-->
-            <!--                                    <td th:text="${beverageInformation.getCafeId().getCafeName()}">Donna Snider</td>-->
-            <!--                                    <td th:text="${beverageInformation.getBigCategory()}">Donna Snider</td>-->
-            <!--                                    <td th:text="${beverageInformation.getIceOrHot()}">Donna Snider</td>-->
-            <!--                                    <td th:text="${beverageInformation.getCaffeine()}">Donna Snider</td>-->
-            <!--                                    <td th:text="${beverageInformation.getSugar()}">Donna Snider</td>-->
-            <!--                                    <td th:text="${beverageInformation.getSodium()}">Donna Snider</td>-->
-            <!--                                    <td th:text="${beverageInformation.getSaturatedFat()}">Donna Snider</td>-->
-            <!--                                    <td th:text="${beverageInformation.getProtein()}">Donna Snider</td>-->
-            <!--                                </a>-->
-            <!--                            </tr>-->
-            <!--                            </tbody>-->
-            <!--                        </table>-->
-            <!--                    </div>-->
-            <!--                </div>-->
-            <!--            </div>-->
-
-
         </div>
 
     </div>
@@ -506,7 +361,49 @@
 </div>
 
 <!-- Bootstrap core JavaScript-->
+
 <script src="/vendor/jquery/jquery.min.js"></script>
+<!-- 진은아 jquery 사용하려면 제일 위에 줘야지-->
+<script th:inline="javascript" type="text/javascript" >
+    /*<![CDATA[*/
+    $(document).ready(function () { // Line 1
+        $('#inputCafe').on( 'change' , function () { // Line 2
+            console.log("I got here!")
+
+            $('#inputBeverage').empty().append('<option value="null">-SELECT-</option>'); // Line 3
+
+            var cafeId = $(this).val(); //Line 4
+
+            var href = "http://localhost:8080/members/IntakeBeverage/intakeWay/manual/" + cafeId //Line 5
+
+            $.get(href, function (cafe, beverages) { // Line 6
+                var beverages = cafe.beverageInformationList; // Line 7
+                for (var i = 0; i <= beverages.length - 1; i++) { // Line 8
+                    console.log(beverages[i].beverageId)
+                    $('#inputBeverage').append('<option value="' + beverages[i].beverageId + '">' + beverages[i].beverageName + '</option>'); // Line 9
+                }
+            })
+        })
+    })
+    /*]]>*/
+</script>
+<script src="/vendor/jquery/jquery.min.js"></script>
+<script th:inline="javascript" type="text/javascript">
+    /*<![CDATA[*/
+    $(document).ready(function(){
+        $('#inputBeverage').on('change',function(){
+
+            let selectedBeverageId = $(this).val();
+            console.log(selectedBeverageId)
+            $("#showBeverageButton").attr("href", "http://localhost:8080/members/IntakeBeverage/intakeWay/manual/getBeverageInformation?beverageId="+selectedBeverageId);
+
+        })
+    })
+    /*]]>*/
+</script>
+
+
+
 <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 <!-- Core plugin JavaScript-->
@@ -515,7 +412,8 @@
 <!-- Custom scripts for all pages-->
 <script src="/js/sb-admin-2.min.js"></script>
 
-<script src="/js/demo/datatables-demo.js"></script>
+<!-- Page level plugins -->
+
 
 </body>
 

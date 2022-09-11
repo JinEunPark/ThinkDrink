@@ -14,15 +14,22 @@
     <title>SB Admin 2 - Blank</title>
 
     <!-- Custom fonts for this template-->
-    <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
             href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
             rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="/css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="css/sb-admin-2.min.css" rel="stylesheet">
 
-
+    <script defer>
+        $(document).ready(function () {
+            var errorMessage = [[${errorMessage}]];
+            if (errorMessage != null) {
+                alert(errorMessage);
+            }
+        });
+    </script>
     <style>
         .gradient-custom {
             /* fallback for old browsers */
@@ -51,7 +58,7 @@
             <div class="sidebar-brand-icon rotate-n-15">
                 <i class="fas fa-laugh-wink"></i>
             </div>
-            <div class="sidebar-brand-text mx-3">Think Drink <sup>2</sup></div>
+            <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
         </a>
 
         <!-- Divider -->
@@ -140,14 +147,14 @@
         </li>
 
         <!-- Nav Item - Charts -->
-        <li class="nav-item active">
+        <li class="nav-item">
             <a class="nav-link" href="charts.html">
                 <i class="fas fa-fw fa-chart-area"></i>
                 <span>Charts</span></a>
         </li>
 
         <!-- Nav Item - Tables -->
-        <li class="nav-item">
+        <li class="nav-item active">
             <a class="nav-link" href="tables.html">
                 <i class="fas fa-fw fa-table"></i>
                 <span>Tables</span></a>
@@ -204,7 +211,7 @@
                             </form>
                         </div>
                     </li>
-
+                    `
 
                     <!-- Nav Item - User Information -->
                     <li class="nav-item dropdown no-arrow">
@@ -244,94 +251,118 @@
                 </ul>
 
             </nav>
-            <!-- Begin Page Content -->
-
             <!-- End of Topbar -->
+
+            <!-- Begin Page Content -->
             <div class="container-fluid">
-                <div class="card shadow mb-4">
-                    <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">회원님의 건강 정보를 입력해 주세요!</h6>
-                    </div>
 
-                </div>
                 <!-- Page Heading -->
-                <div class="card shadow mb-4">
-                    <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">Think drink 음료등록 </h6>
-                    </div>
-                    <div class="card-body">
-                        음료 등록을 위해서 섬취한 음료의 카페와 메뉴를 입력해주세요
+                <h1 class="text-primary">스타벅스</h1>
+                <h1 class="h3 mb-2 text-gray-800" th:text="${userName}"></h1>
+                <h1 class="text-primary">민트 초콜릿 칩 블렌디드<small class="text-muted">의 </small>
+                </h1>
+                <h2>영양성분 정보입니다</h2>
+                <h1 class="h3 mb-2 text-gray-800" th:text="${userName}"></h1>
 
-                        <div class="form-group row">
-                            <label for="inputCafe" class="col-form-label">cafe: </label>
-                            <div class="col-sm-6">
-                                <select class="form-control" id="inputCafe" name="cafeid">
-                                    <option th:value="${null}">-SELECT-</option>
-                                    <option th:each="cafe:${cafeInformationList}"
-                                            th:value="${cafe.cafeId}"
-                                            th:text="${cafe.cafeName}">
+                <!-- Content Row -->
+                <div class="row">
 
-                                    </option>
-                                </select>
-                            </div>
-                        </div>
 
-                        <div class="form-group row">
-                            <label for="inputBeverage" class="col-form-labe">beverage: </label>
-                            <div class="col-sm-6">
-                                <select class="form-control" id="inputBeverage" name="beverageid">
+                    <div class="col-xl-8 col-lg-7">
 
-                                    <option th:value="${null}">-SELECT-</option>
-                                    <option th:each="beverage:${beverageInformationList}"
-                                            th:value="${beverage.beverageId}"
-                                            th:text="${beverage.beverageName}">
-                                    </option>
+                        <!-- Account details card-->
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <form method="post" th:object="${beverageInformation}" th:action="@{/members/IntakeBeverage/intakeWay/manual/getBeverageInformation}">
+                                    <!-- Form Group (username)-->
+                                    <table class = "table">
+                                        <thead>
+                                            <tr>
+                                                <th scope = "col"> 영양성분 </th>
+                                                <th scope = "col"> 함량 </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>1회 제공 열량 (kcal) </td>
+                                                <td> 455 </td>
+                                            </tr>
+                                            <tr>
+                                                <td> 당류 (g) </td>
+                                                <td> 52 </td>
+                                            </tr>
+                                            <tr>
+                                                <td> 단백질 (g) </td>
+                                                <td> 9 </td>
+                                            </tr>
+                                            <tr>
+                                                <td> 나트륨 (mg) </td>
+                                                <td> 190 </td>
+                                            </tr>
+                                            <tr>
+                                                <td> 포화지방 (g) </td>
+                                                <td> 14 </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-danger"> 카페인 (mg) </td>
+                                                <td> 0 </td>
+                                            </tr>
+                                        </tbody>
 
-                                </select>
-                            </div>
-                        </div>
-                        <a class="btn btn-success btn-icon-split"
-                           onclick="saveBeverageIntakeInformation()" id="showBeverageButton">
-                            <script>
-                                function saveBeverageIntakeInformation(){
-                                    alert("섭취할실 음료를 선택하셨습니다.");
-                                }
-                            </script>
-                            <span class="icon text-white-50">
+                                    </table>
+
+                                    <!-- Form Row-->
+                                    <div class="row gx-3 mb-3">
+
+                                    </div>
+                                    <!-- Save changes button-->
+
+                                    <a th:href="@{/members/IntakeBeverage/intakeWay/manual/getBeverageInformation/sub(beverageId=${beverageInformation.getBeverageId()})}" class="btn btn-success btn-icon-split"
+                                    onclick="saveBeverageIntakeInformation()">
+                                        <script>
+                                            function saveBeverageIntakeInformation(){
+                                                alert("섭취한 음료가 저장되었습니다!");
+                                            }
+                                        </script>
+                                        <span class="icon text-white-50">
                                             <i class="fas fa-check"></i>
                                         </span>
-                            <span class="text">이음료의 정보를 열림하겠습니다! </span>
-                        </a>
+                                        <span class="text">네, 이 음료를 섭취했습니다 </span>
+                                    </a>
+
+                                    <a href="#" class="btn btn-danger btn-icon-split">
+                                        <span class="icon text-white-50">
+                                            <i class='fas fa-backspace'></i>
+                                        </span>
+                                        <span class="text">아니오, 메인페이지로 돌아갑니다</span>
+                                    </a>
+                                </form>
+
+
+                            </div>
+                        </div>
                     </div>
-
-
-
                 </div>
             </div>
+            <!-- /.container-fluid -->
+
         </div>
+        <!-- End of Main Content -->
+
+        <!-- Footer -->
+        <footer class="sticky-footer bg-white">
+            <div class="container my-auto">
+                <div class="copyright text-center my-auto">
+                    <span>Copyright &copy; Your Website 2020</span>
+                </div>
+            </div>
+        </footer>
+        <!-- End of Footer -->
 
     </div>
-
-    <!-- /.container-fluid -->
+    <!-- End of Content Wrapper -->
 
 </div>
-
-
-<!-- End of Main Content -->
-
-<!-- Footer -->
-<footer class="sticky-footer bg-white">
-    <div class="container my-auto">
-        <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Your Website 2020</span>
-        </div>
-    </div>
-</footer>
-<!-- End of Footer -->
-
-
-<!-- End of Content Wrapper -->
-
 <!-- End of Page Wrapper -->
 
 <!-- Scroll to Top Button-->
@@ -361,49 +392,7 @@
 </div>
 
 <!-- Bootstrap core JavaScript-->
-
 <script src="/vendor/jquery/jquery.min.js"></script>
-<!-- 진은아 jquery 사용하려면 제일 위에 줘야지-->
-<script th:inline="javascript" type="text/javascript" >
-    /*<![CDATA[*/
-    $(document).ready(function () { // Line 1
-        $('#inputCafe').on( 'change' , function () { // Line 2
-            console.log("I got here!")
-
-            $('#inputBeverage').empty().append('<option value="null">-SELECT-</option>'); // Line 3
-
-            var cafeId = $(this).val(); //Line 4
-
-            var href = "http://localhost:8080/members/IntakeBeverage/intakeWay/manual/" + cafeId //Line 5
-
-            $.get(href, function (cafe, beverages) { // Line 6
-                var beverages = cafe.beverageInformationList; // Line 7
-                for (var i = 0; i <= beverages.length - 1; i++) { // Line 8
-                    console.log(beverages[i].beverageId)
-                    $('#inputBeverage').append('<option value="' + beverages[i].beverageId + '">' + beverages[i].beverageName + '</option>'); // Line 9
-                }
-            })
-        })
-    })
-    /*]]>*/
-</script>
-<script src="/vendor/jquery/jquery.min.js"></script>
-<script th:inline="javascript" type="text/javascript">
-    /*<![CDATA[*/
-    $(document).ready(function(){
-        $('#inputBeverage').on('change',function(){
-
-            let selectedBeverageId = $(this).val();
-            console.log(selectedBeverageId)
-            $("#showBeverageButton").attr("href", "http://localhost:8080/members/IntakeBeverage/intakeWay/manual/getBeverageInformation?beverageId="+selectedBeverageId);
-
-        })
-    })
-    /*]]>*/
-</script>
-
-
-
 <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 <!-- Core plugin JavaScript-->
@@ -413,6 +402,15 @@
 <script src="/js/sb-admin-2.min.js"></script>
 
 <!-- Page level plugins -->
+<script src="/vendor/chart.js/Chart.min.js"></script>
+
+<!-- Page level custom scripts -->
+<script src="/js/demo/chart-area-demo.js"></script>
+<script src="/js/demo/chart-pie-demo.js"></script>
+<script src="/js/demo/chart-bar-demo.js"></script>
+
+
+adsfasdfasdf
 
 
 </body>

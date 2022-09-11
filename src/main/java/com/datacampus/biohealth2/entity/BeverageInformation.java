@@ -1,6 +1,7 @@
 package com.datacampus.biohealth2.entity;
 
 import com.datacampus.biohealth2.constant.IceOrHot;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -45,6 +46,7 @@ public class BeverageInformation {
 
     private double caffeine;
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name="cafe_id")
     private CafeInformation cafeId;

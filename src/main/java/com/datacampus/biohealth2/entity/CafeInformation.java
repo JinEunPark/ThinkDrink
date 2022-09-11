@@ -1,10 +1,12 @@
 package com.datacampus.biohealth2.entity;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.modelmapper.ModelMapper;
 import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
@@ -27,6 +29,7 @@ public class CafeInformation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long cafeId;
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "cafeId")
     private List<BeverageInformation> beverageInformationList = new ArrayList<>();
 
