@@ -58,7 +58,7 @@
             <div class="sidebar-brand-icon rotate-n-15">
                 <i class="fas fa-laugh-wink"></i>
             </div>
-            <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+            <div class="sidebar-brand-text mx-3">Think drink</div>
         </a>
 
         <!-- Divider -->
@@ -281,13 +281,13 @@
                                     <div class="row gx-3 mb-3">
                                         <!-- Form Group (first name)-->
                                         <div class="col-md-6">
-                                            <label class="small mb-1" for="cafeName">CafeName </label>
+                                            <label class="small mb-1" for="cafeName">카페이름 </label>
                                             <input class="form-control" id="cafeName" type="text"
                                                    th:value="${beverageInformation.getCafeId().getCafeName()}">
                                         </div>
                                         <!-- Form Group (last name)-->
                                         <div class="col-md-6">
-                                            <label class="small mb-1" for="BeverageName">BeverageName </label>
+                                            <label class="small mb-1" for="BeverageName">음료이름 </label>
                                             <input class="form-control" id="BeverageName" type="text"
                                                    placeholder="Enter your last name" th:field="*{beverageName}" th:value="${beverageInformation.getBeverageName()}">
                                         </div>
@@ -296,32 +296,39 @@
                                     <div class="row gx-3 mb-3">
                                         <!-- Form Group (organization name)-->
                                         <div class="col-md-6">
-                                            <label class="small mb-1" for="Caffeine">Caffeine</label>
+                                            <label class="small mb-1" for="Caffeine">카페인 (mg)</label>
                                             <input class="form-control" id="Caffeine" type="text"
                                                     th:value="${beverageInformation.getCaffeine()}">
                                         </div>
                                         <!-- Form Group (location)-->
                                         <div class="col-md-6">
                                             <label class="small mb-1" for="Sugar">
-                                            Sugar</label>
+                                                당류 (g)</label>
                                             <input class="form-control" id="Sugar" type="text"
                                                    placeholder="Enter your location"
                                                    th:value="${beverageInformation.getSugar()}">
                                         </div>
                                         <div class="col-md-6">
-                                            <label class="small mb-1" for="Protein">Protein</label>
+                                            <label class="small mb-1" for="Sugar">
+                                                나트륨 (mg)</label>
+                                            <input class="form-control" id="Sodium" type="text"
+                                                   placeholder="Enter your location"
+                                                   th:value="${beverageInformation.getSodium()}">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="small mb-1" for="Protein">단백질 (g)</label>
                                             <input class="form-control" id="Protein" type="text"
                                                    placeholder="Enter your location"
                                                    th:value="${beverageInformation.getProtein()}">
                                         </div>
                                         <div class="col-md-6">
-                                            <label class="small mb-1" for="Kcal">Kcal</label>
+                                            <label class="small mb-1" for="Kcal">Kcal (1회제공량)</label>
                                             <input class="form-control" id="Kcal" type="text"
                                                    placeholder="Enter your location"
                                                    th:value="${beverageInformation.getKcal()}">
                                         </div>
                                         <div class="col-md-6">
-                                            <label class="small mb-1" for="SaturatedFat">SaturatedFat</label>
+                                            <label class="small mb-1" for="SaturatedFat">포화지방 (g)</label>
                                             <input class="form-control" id="SaturatedFat" type="text"
                                                    placeholder="Enter your location"
                                                    th:value="${beverageInformation.getSaturatedFat()}">
