@@ -28,3 +28,4 @@ RDMS를 설정하고자 할때  user 의 정보와 Id의 local 환경에 맞게 
 
 
 
+s
