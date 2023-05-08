@@ -34,12 +34,10 @@
             <artifactId>thymeleaf-layout-dialect</artifactId>
             <version>3.1.0</version>
         </dependency>
-
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
         </dependency>
-
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>

@@ -22,8 +22,7 @@ public class ShowIntakeDrinkController {
 
     private final BeverageIntakeRepository beverageIntakeRepository;
 
-    @GetMapping
-
+    @GetMapping(value="/show")
     public String getTimeStamp(){
         return"Intake/showIntakeBeverage";
     }
@@ -37,3 +36,4 @@ public class ShowIntakeDrinkController {
 
 
 }
+
